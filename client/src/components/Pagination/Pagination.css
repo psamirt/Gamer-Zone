@@ -1,0 +1,67 @@
+.paginated {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .paginated-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .5rem;
+  }
+  
+  .index-page {
+    padding: 0.3rem 0.5rem;
+    margin: 0 0.3rem;
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: "playstation";
+    font-size: .8rem;
+  }
+  
+  .index-page:hover {
+    background-color: #ddd;
+  }
+  
+  #selected {
+    background-color: rgb(115, 178, 230);
+    color: #fff;
+  }
+  
+  .button-prev,
+  .button-next {
+    padding: 0.3rem 0.5rem;
+    margin: 0 0.3rem;
+    background-color:  rgb(179, 43, 43);
+    transition: background-color 0.2s ease;
+    border: none;
+    border-radius: 0.2rem;
+    color: #fff;
+    cursor: pointer;
+    font-family: "playstation";
+    font-size: .7rem;
+  }
+  
+  .button-prev:disabled,
+  .button-next:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+  }
+  
+  .button-prev:hover,
+  .button-next:hover {
+    background-color: rgb(211, 91, 91);
+  }
+
+@media screen and (max-width: 667px){
+  .index-page{
+    font-size: .6rem;
+  }
+  .button-prev,
+  .button-next {
+    font-size: .4rem;
+  }
+  }
