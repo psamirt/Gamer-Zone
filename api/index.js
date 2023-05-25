@@ -8,7 +8,7 @@ async function startServer() {
   await conn.sync({ force: true });
   await getGamesFromApi();
   server.listen(PORT, () => {
-    console.log("%s listening at", proces.env.PORT);
+    console.log("%s listening at",PORT);
   });
 }
 
