@@ -6,7 +6,7 @@ import Landing from "./views/Landing/Landing";
 import Create from "./views/Create/Create";
 import Details from "./components/Details/Details";
 import axios from "axios";
-axios.defaults.baseURL = 'http://localhost:3001/'
+axios.defaults.baseURL = 'https://deploy-production-34ff.up.railway.app/'
 
 function App() {
   return (
