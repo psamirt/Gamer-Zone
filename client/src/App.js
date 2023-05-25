@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Landing from "./views/Landing/Landing";
 import Create from "./views/Create/Create";
 import Details from "./components/Details/Details";
+import axios from "axios";
+axios.defaults.baseURL = 'http://localhost:3001/'
 
 function App() {
   return (
