@@ -16,10 +16,12 @@ const Home = () => {
   const genreBolean = useSelector((state) => state.genreBolean);
   const ratingBolean = useSelector((state) => state.ratingBolean);
   const originBolean = useSelector((state) => state.originBolean);
+  // const platformBolean = useSelector((state) => state.platformBolean);
   const gamesAZ = useSelector((state) => state.gamesAZ);
   const filterByGenre = useSelector((state) => state.filterByGenre);
   const gamesRating = useSelector((state) => state.gamesRating);
   const filterByOrigin = useSelector((state) => state.filterByOrigin);
+  // const filterbyPlatform = useSelector((state) => state.filterbyPlatform);
   const [gamesPerPage, setGamesPerPage] = useState(15);
   const page = useSelector((state) => state.currentPage);
   const indexOfTheLastGame = page * gamesPerPage;
@@ -36,15 +38,19 @@ const Home = () => {
   }, []);
 
   const displayedGames = useMemo(() => {
-    if (orderBolean && !ratingBolean) {
+    if (orderBolean) {
       return gamesAZ.slice(indexOfFirstGame, indexOfTheLastGame);
-    } else if (!orderBolean && ratingBolean) {
+    } else if (ratingBolean) {
       return gamesRating.slice(indexOfFirstGame, indexOfTheLastGame);
     } else if (genreBolean) {
       return filterByGenre.slice(indexOfFirstGame, indexOfTheLastGame);
     } else if (originBolean) {
       return filterByOrigin.slice(indexOfFirstGame, indexOfTheLastGame);
-    } else {
+    } 
+    // else if (platformBolean) {
+    //   return filterbyPlatform.slice(indexOfFirstGame, indexOfTheLastGame);
+    // }
+     else {
       return currentGames;
     }
   }, [
@@ -62,9 +68,7 @@ const Home = () => {
   ]);
 
   if (loading) {
-    return (
-      <Loading/>
-    );
+    return <Loading />;
   }
 
   return (

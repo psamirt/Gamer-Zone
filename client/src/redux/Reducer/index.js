@@ -10,7 +10,7 @@ import {
   FILTER_GENRE,
   FILTER_ORIGIN,
   GET_NAME,
-  GET_PLATFORMS,
+  FILTER_PLATFORM,
 } from "../Actions";
 
 let initialState = {
@@ -22,10 +22,12 @@ let initialState = {
   ratingBolean: false,
   genreBolean: false,
   originBolean: false,
+  platformBolean: false,
   gamesAZ: [],
   gamesRating: [],
   filterByGenre: [],
   filterByOrigin: [],
+  filterbyPlatform: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -67,6 +69,13 @@ function rootReducer(state = initialState, action) {
           orderBolean: true,
           currentPage: 1,
         };
+      } else if (action.payload === "0") {
+        return {
+          ...state,
+          gamesAZ: state.allGames,
+          orderBolean: false,
+          currentPage: 1,
+        };
       } else {
         return {
           ...state,
@@ -90,7 +99,13 @@ function rootReducer(state = initialState, action) {
           gamesRating: mayor,
           ratingBolean: true,
           currentPage: 1,
-          
+        };
+      } else if (action.payload === "0") {
+        return {
+          ...state,
+          gamesRating: state.allGames,
+          ratingBolean: false,
+          currentPage: 1,
         };
       } else {
         return {
@@ -112,7 +127,7 @@ function rootReducer(state = initialState, action) {
           ? games
           : games.filter((el) => {
               const genres = el.genre || el.Genres.map((genre) => genre.name);
-              return Array.isArray(genres) && genres.includes(action.payload);
+              return genres.includes(action.payload);
             });
       return {
         ...state,
@@ -133,14 +148,31 @@ function rootReducer(state = initialState, action) {
           action.payload === "all" ? state.allGames : originFiltered,
         originBolean: true,
         currentPage: 1,
-
       };
+
+    // case FILTER_PLATFORM:
+    //   const gamesP = state.allGames;
+    //   const filterPlatform =
+    //     action.payload === "0"
+    //       ? gamesP
+    //       : gamesP.filter((el) => {
+    //           const platform =
+    //             el.platforms ||
+    //             el.Genres.map((platforms) => platforms.platforms);
+    //           return platform.includes(action.payload);
+    //         });
+    //   return {
+    //     ...state,
+    //     filterbyPlatform: filterPlatform,
+    //     platformBolean: true,
+    //     currentPage: 1,
+    //   };
+
     case GET_NAME:
       return {
         ...state,
         allGames: action.payload,
         currentPage: 1,
-
       };
 
     case RESET:
@@ -150,10 +182,12 @@ function rootReducer(state = initialState, action) {
         ratingBolean: false,
         genreBolean: false,
         originBolean: false,
+        platformBolean: false,
         gamesAZ: [],
         gamesRating: [],
         filterByGenre: [],
         filterByOrigin: [],
+        filterPlatform: [],
         currentPage: 1,
       };
 
